@@ -216,12 +216,15 @@ class: center, middle
 - Does more than just REST: comes with primitives for channels, pubsub, and more.
 
 ---
+class: center
 
 # But Really Freakin' Fast
 
 ???
 
-- In my experience, the routing and rendering takes ~500us, everything else is database
+- In my experience, the routing and rendering takes ~500us, everything else is database.
+- Database is significantly faster; loads can happen in parallel. I stress tested the voting app once
+  and was able to load 5,000 objects, run them through a service, and render the outcome in ~130ms.
 - A single digital ocean server with 2 million connections
 - Over 200 RPS on a raspberry pi [Source](https://mfeckie.github.io/Profiling-Phoenix-On-Raspberry-Pi/)
   while using only 80 MB of RAM.
@@ -285,22 +288,12 @@ end
 
 ## Differences: Testing
 
+Ruby
 ```ruby
 expect(object).to receive(:function).once
 ```
 
-???
-
-- Here is a typical mock test in Ruby, which are really nice to testing that APIs are being called
-  rather than testing what they do. Under the covers, this works by modifying the class or object
-  globally, in place, to have state associated with it about how many times it has been called.
-  Thus, we cannot do this in Elixir; and since there is no way to escape that mocks are a global
-  state, it is much more in depth.
-
----
-
-## Differences: Testing
-
+Elixir
 ```elixir
 # In the config
 config :dihi_backend, :auth_module, DihiBackend.MockAuth
@@ -319,6 +312,14 @@ assert_received :logout
 
 ???
 
+Ruby
+- Here is a typical mock test in Ruby, which are really nice to testing that APIs are being called
+  rather than testing what they do. Under the covers, this works by modifying the class or object
+  globally, in place, to have state associated with it about how many times it has been called.
+  Thus, we cannot do this in Elixir; and since there is no way to escape that mocks are a global
+  state, it is much more in depth.
+
+Elixir
 - What you wind up doing is mocking the entire contract in roughly the same way, except instead of
   the object or class keeping track of the calls, the test itself does.
 - This allows multiple tests to run at the same time since the object/class does not keep the state.
@@ -362,6 +363,7 @@ end
 services, much easier with Phoenix since it is part of the ecosystem.
 
 ---
+class: center
 
 ## The Right Tool for the Job
 ### The tradeoff: productivity for reliability and speed
@@ -388,3 +390,6 @@ they are now somewhat stuck with a monolithic application that would be really h
 - Your application is heavy on delayed jobs, Redis, or async calls.
 - Your application needs to be distributed in any way.
 - Your application has a low hardware cost or high scalability requirement.
+
+---
+background-image: url(phoenix.png)
