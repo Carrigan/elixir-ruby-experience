@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; font-size: 1.2em; }
+
+      .remark-slide-content h2 {
+        font-size: 3em;
+      }
+
+      .remark-slide-content li {
+        font-size: 1.5em;
+        padding-bottom: 1em;
+      }
+    </style>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+  </head>
+  <body>
+    <textarea id="source"></textarea>
+    <script>
+    $(document).ready(function() {
+      $.ajaxSetup({async:false});
+      $('#source').load('elixir.md');
+      var slideshow = remark.create();
+    });
+    </script>
+  </body>
+</html>

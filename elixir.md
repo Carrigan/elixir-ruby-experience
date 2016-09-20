@@ -1,3 +1,8 @@
+layout: true
+class: middle
+---
+class: center
+
 # Lunch With Elixir
 
 ---
@@ -234,7 +239,6 @@ class: center
 
 ## Differences: Ecto
 
-Ruby
 ```ruby
 user = User.find(1)
 user.name = params.require(:name)
@@ -245,7 +249,6 @@ else
 end
 ```
 
-Elixir
 ```elixir
 changeset = Repo.get!(User, 1)
   |> User.name_changeset(params)
@@ -288,12 +291,23 @@ end
 
 ## Differences: Testing
 
-Ruby
 ```ruby
 expect(object).to receive(:function).once
 ```
 
-Elixir
+???
+
+Ruby
+- Here is a typical mock test in Ruby, which are really nice to testing that APIs are being called
+  rather than testing what they do. Under the covers, this works by modifying the class or object
+  globally, in place, to have state associated with it about how many times it has been called.
+  Thus, we cannot do this in Elixir; and since there is no way to escape that mocks are a global
+  state, it is much more in depth.
+
+---
+
+## Differences: Testing
+
 ```elixir
 # In the config
 config :dihi_backend, :auth_module, DihiBackend.MockAuth
@@ -311,13 +325,6 @@ assert_received :logout
 ```
 
 ???
-
-Ruby
-- Here is a typical mock test in Ruby, which are really nice to testing that APIs are being called
-  rather than testing what they do. Under the covers, this works by modifying the class or object
-  globally, in place, to have state associated with it about how many times it has been called.
-  Thus, we cannot do this in Elixir; and since there is no way to escape that mocks are a global
-  state, it is much more in depth.
 
 Elixir
 - What you wind up doing is mocking the entire contract in roughly the same way, except instead of
