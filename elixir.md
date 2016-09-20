@@ -358,16 +358,19 @@ end
 
 ---
 
-## Differences: Tooling
+## Developer Experience
 
 - Much less mature ecosystem; there is a gem for nearly everything
 - Gems like Devise cut developer time on low-value items like password reset and email confirmation.
+
+---
+
+## Other Cool Things
+
+- `Delayed Job` built into the language
+- `Rake` built into the language
+- Can be run on embedded hardware
 - "Phoenix is not your app"
-
-???
-
-"Phoenix is not your app" -> You can much easier build umbrella apps, applications with non-http
-services, much easier with Phoenix since it is part of the ecosystem.
 
 ---
 class: center
