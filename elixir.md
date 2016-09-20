@@ -403,3 +403,10 @@ they are now somewhat stuck with a monolithic application that would be really h
 
 ---
 background-image: url(phoenix.png)
+---
+
+## Resources
+
+- [Programming Elixir](https://pragprog.com/book/elixir13/programming-elixir-1-3)
+- [Programming Phoenix Book](https://pragprog.com/book/phoenix/programming-phoenix)
+- [Elixir Slack](https://elixir-slackin.herokuapp.com/)
